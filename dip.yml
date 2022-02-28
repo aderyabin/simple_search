@@ -70,10 +70,12 @@ interaction:
     service: postgres
     command: psql -h postgres -U postgres -d example_app_dev
 
-  'redis-cli':
-    description: Run Redis console
-    service: redis
-    command: redis-cli -h redis
+  dev:
+    description: Run dev
+    service: runner
+    command: bin/dev
+    compose_run_options: [service-ports, use-aliases]
+
 
 provision:
   - dip compose down --volumes
@@ -81,3 +83,6 @@ provision:
   - dip bundle install
   - dip yarn install
   - dip rails db:setup
+
+stop:
+ - docker kill $(docker ps -q)
