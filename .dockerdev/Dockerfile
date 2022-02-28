@@ -4,7 +4,6 @@ FROM ruby:$RUBY_VERSION-slim-bullseye
 ARG PG_MAJOR
 ARG NODE_MAJOR
 ARG BUNDLER_VERSION
-ARG YARN_VERSION
 
 # Common dependencies
 RUN apt-get update -qq \
@@ -73,5 +72,3 @@ RUN gem update --system && \
 RUN mkdir -p /app
 
 WORKDIR /app
-
-RUN npm install -g yarn@$YARN_VERSION

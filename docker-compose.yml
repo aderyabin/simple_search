@@ -9,11 +9,9 @@ x-app: &app
       PG_MAJOR: '14'
       NODE_MAJOR: '14'
       BUNDLER_VERSION: '2.3.8'
-      YARN_VERSION: '1.22.17'
   environment: &env
     NODE_ENV: ${NODE_ENV:-development}
     RAILS_ENV: ${RAILS_ENV:-development}
-    YARN_CACHE_FOLDER: /app/node_modules/.yarn-cache
   env_file:
     - '.env.${RAILS_ENV:-development}'
   image: simple_search:1.0.0
@@ -27,17 +25,12 @@ x-backend: &backend
   tty: true
   volumes:
     - .:/app:cached
-    - rails_cache:/app/tmp/cache
     - bundle:/usr/local/bundle
-    - node_modules:/app/node_modules
-    - packs:/app/public/packs
-    - packs-test:/app/public/packs-test
     - .dockerdev/.psqlrc:/root/.psqlrc:ro
     - .dockerdev/.bashrc:/root/.bashrc:ro
   environment:
     <<: *env
     BOOTSNAP_CACHE_DIR: /usr/local/bundle/_bootsnap
-    WEBPACKER_DEV_SERVER_HOST: webpacker
     WEB_CONCURRENCY: 0
     HISTFILE: /app/log/.bash_history
     PSQL_HISTFILE: /app/log/.psql_history
@@ -71,10 +64,18 @@ services:
     ports:
       - 5432
 
+  test:
+    <<: *backend
+    command: bash -c "bin/rails test"
+    container_name: test
+    env_file:
+      - .env.test
+    environment:
+      - RAILS_ENV=test
+    ports: []
+    depends_on:
+      - postgres
+
 volumes:
   postgres:
   bundle:
-  node_modules:
-  rails_cache:
-  packs:
-  packs-test:

@@ -41,22 +41,14 @@ interaction:
     command: bundle exec rails
     subcommands:
       s:
-        description: Run Rails server available at http://localhost:3030
+        description: Run Rails server available at http://localhost:3000
         service: rails
         compose:
           run_options: [service-ports, use-aliases]
 
-  yarn:
-    description: Run Yarn commands
-    service: runner
-    command: yarn
-    compose_run_options: [no-deps]
-
   rspec:
     description: Run Rails tests
-    service: runner
-    environment:
-      RAILS_ENV: test
+    service: test
     command: bundle exec rspec
 
   rubocop:
@@ -68,20 +60,11 @@ interaction:
   psql:
     description: Run psql console
     service: postgres
-    command: psql -h postgres -U postgres -d example_app_dev
-
-  dev:
-    description: Run dev
-    service: runner
-    command: bin/dev
-    compose_run_options: [service-ports, use-aliases]
-
+    command: psql -h postgres -U postgres -d simple_search_development
 
 provision:
   - dip compose down --volumes
-  - dip compose up -d postgres redis
   - dip bundle install
-  - dip yarn install
   - dip rails db:setup
 
 stop:
