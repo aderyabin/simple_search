@@ -10,6 +10,11 @@ Install [dip](https://github.com/bibendi/dip) [gem](https://evilmartians.com/chr
     $ gem install dip
 
 
+Create env files:
+
+    $ echo "DATABASE_URL=postgres://postgres:postgres@postgres/simple_search_development" > env.development
+    $ echo "DATABASE_URL=postgres://postgres:postgres@postgres/simple_search_test" > env.test
+
 Run provisioning:
 
     $ dip provision
