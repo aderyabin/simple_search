@@ -31,6 +31,9 @@ gem "tailwindcss-rails"
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
+gem "octokit"
+gem "interactor"
+gem "dry-initializer"
 # Use Sass to process CSS
 # gem "sassc-rails"
 
