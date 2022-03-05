@@ -30,4 +30,13 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  views:
+    title: Public Repo Search
+    repo_search:
+      index:
+        placeholder: "Github public repo search..."
+        table:
+          owner: Owner
+          repo: Repo
+          topics: Topics
+

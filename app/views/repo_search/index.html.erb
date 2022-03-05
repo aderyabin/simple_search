@@ -1,0 +1,14 @@
+
+<div class="w-full">
+  <div class="container flex justify-center items-center">
+    <%= form_tag(root_url, {:method => 'get'}) do %>
+      <%= text_field_tag :q, params[:q], class: "h-14 w-96 pr-8 pl-5 rounded z-0 focus:shadow focus:outline-none", placeholder:  t('views.repo_search.index.placeholder') %>
+    <% end %>
+  </div>
+  <% if notice.present? %>
+    <p class="my-8 py-2 px-3 bg-red-50 mb-5 text-red-500 font-medium rounded-lg justify-center" id="notice"><%= notice %></p>
+  <% end %>
+
+  <%= render 'table' if @repo_search.success? && !@repo_search.repos.nil? %>
+</div>
+
