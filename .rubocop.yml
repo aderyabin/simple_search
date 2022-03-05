@@ -1,0 +1,35 @@
+require:
+  - rubocop-rspec
+  - rubocop-rails
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - 'bin/**/*'
+    - 'config.ru'
+    - 'config/environments/**/*.rb'
+    - 'Gemfile'
+    - 'config/initializers/**/*.rb'
+    - 'config/application.rb'
+    - 'config/boot.rb'
+    - 'config/environment.rb'
+    - 'config/importmap.rb'
+    - 'config/puma.rb'
+    - 'Rakefile'
+
+Style/Documentation:
+  Enabled: false
+
+Style/RedundantFetchBlock:
+  Exclude:
+    - 'config/puma.rb'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+
+RSpec/NamedSubject:
+  Enabled: false
+
+RSpec/AnyInstance:
+  Enabled: false
