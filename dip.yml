@@ -46,12 +46,6 @@ interaction:
         compose:
           run_options: [service-ports, use-aliases]
 
-  yarn:
-    description: Run Yarn commands
-    service: runner
-    command: yarn
-    compose_run_options: [no-deps]
-
   rspec:
     description: Run Rails tests
     service: runner
@@ -65,11 +59,6 @@ interaction:
     command: bundle exec rubocop
     compose_run_options: [no-deps]
 
-  psql:
-    description: Run psql console
-    service: postgres
-    command: psql -h postgres -U postgres -d example_app_dev
-
   dev:
     description: Run dev
     service: runner
@@ -79,9 +68,7 @@ interaction:
 
 provision:
   - dip compose down --volumes
-  - dip compose up -d postgres redis
   - dip bundle install
-  - dip yarn install
   - dip rails db:setup
 
 stop:

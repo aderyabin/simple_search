@@ -1,5 +1,33 @@
-# Docker for development setup
+# Simple Github public repositories search ([Live Demo](https://adjust-simplesearch.herokuapp.com/))
 
-Read this post for more information: [Ruby on Whales: Dockerizing Ruby and Rails development](https://evilmartians.com/chronicles/ruby-on-whales-docker-for-ruby-rails-development).
+![Build](https://github.com/aderyabin/simple_search/actions/workflows/rspec.yml/badge.svg)
 
-See this configuration in action in Martians Library demo app: <https://github.com/evilmartians/chronicles-gql-martian-library>.
+
+## Installation
+
+Install [dip](https://github.com/bibendi/dip) [gem](https://evilmartians.com/chronicles/reusable-development-containers-with-docker-compose-and-dip):
+
+    $ gem install dip
+
+
+Run provisioning:
+
+    $ dip provision
+
+
+Start server:
+
+    $ dip rails s
+
+
+## Testing
+
+Run `dip rspec` to run the tests
+
+
+## Built With
+
+* Rails 3.1.0
+* Rails 7
+* Docker
+* `dip` gem
